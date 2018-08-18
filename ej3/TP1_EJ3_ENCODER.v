@@ -25,7 +25,7 @@ reg a,b,c,d;
 wire x,y;
 //Nothing
 reg dummy;
-//
+//because if not, it doesn't work
 encoder codifire(a,b,c,d,x,y);
 //Recibe the input
 initial begin
