@@ -35,9 +35,6 @@ def checkArgs(args):
 
     return argsOk
 
-
-
-
 #Computes Range and Resolution. 
 def process(args):
     intBits = args.parameters[1]
