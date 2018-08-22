@@ -1,0 +1,54 @@
+module main;
+
+    //Registros A y B de 4 bits
+    reg [3:0] A;
+    reg [3:0] B;
+    //Registro de Output
+    output reg [3:0] OUT;
+    //Registro de Selector
+    reg [2:0] S;     
+
+    /*Selector de Operacion, como hay 8 operaciones
+     3 bits son suficientes*/
+    reg [10:0] CCR; 
+
+    // suma suma_dut(OUT,CCR,A,B);
+    // resta resta_dut(OUT,CCR,A,B);
+    // and and_dut(OUT,CCR,A);
+    // or or_dut(OUT,CCR,A);
+    // not not_dut(OUT,CCR,A);
+    // xor xor_dut(OUT,CCR,A);
+    // ca2 ca2_dut(OUT,CCR,A);
+    // shL shL_dut(OUT,CCR,A);
+initial begin
+       //Evitamos hacer computaciones de más dado que si x es 0 su salida sera identicamente 0
+       A = 4'b0001;
+       B = 4'b1101;
+       S = 3'b111;
+
+            if(S == 0)
+                 OUT = A + B;       //SUMA
+            if(S == 1)
+                 OUT = A - B;       //RESTA
+            if(S == 2)
+                 OUT =  A & B;      //AND
+            if(S == 3)
+                 OUT = A | B;       //OR            
+            if(S == 4)
+                OUT = ~A;           //NOT
+            if(S == 5)
+                OUT = A^B;          //XOR
+            if(S == 6)
+                OUT = ~A + 1;       //COMPLEMENTO A 2
+            if(S == 7)
+                OUT = A << 1;       //SHIFT LEFT
+end
+
+  initial begin
+    $monitor("Output value is: %b", OUT) ;
+  end
+
+endmodule
+
+
+
