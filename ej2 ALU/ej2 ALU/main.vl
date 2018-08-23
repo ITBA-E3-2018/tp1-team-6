@@ -1,0 +1,85 @@
+/* ALU Arithmetic and Logic Operations
+----------------------------------------------------------------------
+|ALU_Sel|   ALU Operation
+----------------------------------------------------------------------
+| 000  |   ALU_Out = A + B;
+----------------------------------------------------------------------
+| 001  |   ALU_Out = A - B;
+----------------------------------------------------------------------
+| 010  |   ALU_Out = A & B;
+----------------------------------------------------------------------
+| 011  |   ALU_Out = A | B;
+----------------------------------------------------------------------
+| 100  |   ALU_Out = ~A;
+----------------------------------------------------------------------
+| 101  |   ALU_Out = A^B;
+----------------------------------------------------------------------
+| 110  |   ALU_Out = ~A + 1;
+----------------------------------------------------------------------
+| 111  |   ALU_Out = A << 1;
+----------------------------------------------------------------------*/
+
+module main;
+
+    //Registros A y B de 4 bits
+    reg [3:0] A;
+    reg [3:0] B;
+    //Registro de Output
+    output wire [3:0] ALU_Out;
+    /*Selector de Operacion, como hay 8 operaciones
+     3 bits son suficientes*/
+    reg [2:0] ALU_Sel;     //Selector de operación
+
+       integer i;
+
+alu alu_test(
+    A,B,
+    ALU_Sel,
+    ALU_Out
+);
+
+initial begin
+       A = 4'b0010;
+       B = 4'b0000;
+       ALU_Sel = 3'b000;
+       for(i = 0; i < 8; i = i + 1)
+        begin
+        #10;
+        $display("ALU_Sel: %b,Registro A: %b, Registro B: %b, ALU_Out: %b ",ALU_Sel,A,B,ALU_Out);
+        ALU_Sel = ALU_Sel + 3'b001;
+        end;
+    // output reg[3:0] ALU_Out;
+end
+
+//   initial begin
+//     $monitor("Registro A: %b, Registro B: %b, ALU_Out: %b ",A,B,ALU_Out);
+//   end
+endmodule
+
+
+
+module alu(
+    input [3:0] A,
+    input [3:0] B,
+    input [2:0]ALU_Sel,
+    output [3:0] ALU_Out
+);
+reg [7:0] ALU_Result;
+assign ALU_Out = ALU_Result; // ALU out
+
+always @(ALU_Sel) begin
+    case(ALU_Sel)
+            0:ALU_Result = A + B;       //SUMA
+            1:ALU_Result = A - B;       //RESTA
+            2:ALU_Result =  A & B;      //AND
+            3:ALU_Result = A | B;       //OR            
+            4:ALU_Result = ~A;           //NOT
+            5:ALU_Result = A^B;          //XOR
+            6:ALU_Result = ~A + 1;       //COMPLEMENTO A 2
+            7:ALU_Result = A << 1;       //SHIFT LEFT
+        endcase 
+    end   
+endmodule
+
+
+
