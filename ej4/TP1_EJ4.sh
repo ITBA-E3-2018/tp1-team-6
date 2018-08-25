@@ -1,4 +1,5 @@
 iverilog TP1_EJ4.v
+#Realizamos un testeo de la tabla completa
 echo Tabla de Verdad
 vvp a.out +x=0000 rm a.out
 vvp a.out +x=0001 rm a.out
