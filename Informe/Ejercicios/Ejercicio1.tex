@@ -1,6 +1,7 @@
 %\documentclass[11pt]{article}
 
 %\begin{document}
+
 \chapter*{1-Rango y Resoluci\'on}
 
 \section{Objetivo}
@@ -88,9 +89,99 @@ Entonces: 	$$R' = M' - m'$$
 Notamos que $R = R'$. Esto nos da indicios de que el rango de un n\'umero de punto fijo \textit{signado} \'o \textit{no signado} tiene n el mismo rango. A continuaci\'on demostraremos que esto es de hecho as\'i.
 
 \subsection{Formula general para el c\'alculo del Rango}
+\indent\indent Dado un n\'umero binario $B$ en punto fijo con $k$ bits en su parte entera y $j$ bits para su parte fraccionaria. 
+ Primero trataremos a $B$ como si se tratase de un n\'umero \textit{no signado}.Para ambos casos separaremos el problema en dos partes. Por un lado nos encargaremos de calcular la parte entera y luego la fraccionaria.
+\\
+
+Parte entera:
+\begin{equation}
+P_{k} = 1 + 2 +  \cdots  + 2^k
+\end{equation}
+\begin{equation}
+2P_{k} = 2 + 2^2  + \cdots + 2^k +2^{k+1} 
+\end{equation}
+
+Restandolas:
+\begin{equation}
+2P_{k} - P_{k} = 2^{k+1} -1 
+\end{equation}
+\\
+%Resultado para calcular la parte entera de un numero fraccionario no signado
+\begin{equation}
+P_{k} = 2^{k+1}-1
+\end{equation}
+
+Para realizar el calculo de la parte fraccionaria procedemos de forma analoga:
+
+\begin{equation}
+F_{j} = \frac{1}{2} + \frac{1}{4} +  \cdots  + \left(\frac{1}{2}\right)^j
+\end{equation}
+
+\begin{equation}
+\frac{1}{2} F_{j} = \frac{1}{4} + \frac{1}{8} +  \cdots  + \left(\frac{1}{2}\right)^j + \left(\frac{1}{2}\right)^{j+1}
+\end{equation}
+Restandolas:
+\begin{equation}
+F_{j} - \frac{1}{2}  F_{j} = \frac{1}{2} - \left(\frac{1}{2}\right)^{j+1}
+\end{equation}
+\\
+De lo cual obtenemos
+%Resultado para calcular la parte fraccionaria de un 
+\begin{equation}
+F_{j} = 1 - \left(\frac{1}{2}\right)^j
+\end{equation}
+
+Luego, como estamos tratando a $B$ como un n\'umero \textit{no signado}. 
+Usando 4 y 7 :
+$$R = P_{k}  + F_{j} =  \left(2^{k+1}-1 \right) + \left(1 - \left(\frac{1}{2} \right)^j\right) - 0$$
+\\
+Obtenemos la formula para el Rango de un n\'umero \textit{no signado}:
+$$R =  2^{k+1} - \left(\frac{1}{2} \right)^j$$
+
+Para el caso de un n\'umero \textit{signado} se tienen en cuenta $k + j - 1$ bits para calcular el n\'umero m\'as positivo representable.
+Es decir:
+
+$$P'_{k} = P_{k-1} = 2^{ (k+1)-1)} -1$$
+
+$$P'_{k} = 2^{k} -1$$
+
+En el caso de la parte fraccionaria es analogo al primero tratado
+\begin{align*}
+F'_{j} = F_{j}
+F'_{j} = 1 - \left(\frac{1}{2}\right)^j
+\end{align*}
 
 
 
+Para obtener la minima representaci\'on posible:
+\begin{equation}
+m''_{k} = -2^{k}
+\end{equation}
+
+Por lo tanto ya tenemos todo lo necesario para calcular $R'$ el rango de un n\'umero signado:
+
+\begin{align*}
+R' &= P'_{k} + F'_{j} - m''_{k} \\
+R' &= \left(2^{k} -1\right) + \left(1 - \left(\frac{1}{2}\right)^j\right) - \left(-2^{k}\right)
+\end{align*}
+ Reordenando y agrupando convenientemente
+ $$R' = 2^{k+1} - \left(\frac{1}{2}\right)^j$$
+ 
+Finalmente hemos demostrado que el Rango de un n\'umero en punto fijo no depende de si el n\'umero es \textit{signado} o \textit{no signado}
+Esto presenta una gran ventaja a nivel computacional ya que no son necesarias consideraciones extra y simplifica el c\'alculo a una sola expresi\'on
+
+\subsection{Formula general para el c\'alculo de la Resoluci\'on}
+Un n\'umero en punto fijo permite expresar n\'umeros reales con cierto grado de precisi\'on. Esta caracteristica esta limitada por la cantidad de bits que se dediquen a la parte fraccionaria.
+\\
+\indent La resoluci\'on vendra dada por:
+\begin{equation}
+Resoluci\acute{o}n = \left(\frac{1}{2}\right)^j
+\end{equation}
+
+Y es indistinto si el n\'umero es \textit{signado} o es \textit{no signado}
+
+ 
+ 
  
 %\end{document}
 
