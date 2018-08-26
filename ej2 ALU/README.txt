@@ -4,3 +4,4 @@ TODO:
 -Cambiar cadenda de If por case
 -Comentar
 -Hacer TestBench
+-Cambiar NOMBRE DE CARPETA
