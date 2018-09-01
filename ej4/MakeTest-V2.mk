@@ -39,7 +39,7 @@ NOTSOURCE: $(SOURCES2)
 ifneq ($(value SOURCES2), )
 #Compiles the file in the directory just made and 
 #with the $@ is the name of the rule
-	@$(COMPILER) $(SOURCES2) -o $@
+	@$(COMPILER) $(SOURCES2) -o $(TARGET)
 	@echo "Compilation complete!"
 else
 	@echo "Compilation failed!"
