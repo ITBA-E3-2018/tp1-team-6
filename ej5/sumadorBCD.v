@@ -9,11 +9,11 @@ initial begin
     if(a > 9 || b > 9)
         $display("error. solo numeros de un digito, GIL");
     else begin
-        if ((a + b) < 10)
+        if ((a + b) < 10)       //nos fijamos que la suma sea menor a 10 porque, en ese caso, en BCD es seria sumar normalmente
             x = a + b;
         else            //como a y b son de un digito la suma sera de menor a 19
-            x = (1<<4) - 10 + a + b;
-    end
+            x = (1<<4) - 10 + a + b;    // siendo que la suma estara entre 20 y 10 la expresion en BCD sera un 1
+    end                                 // para el nibble mas significativo y el digito menos significativo al otro nibble
 end
 
 endmodule
