@@ -1,15 +1,10 @@
-iverilog BCD.v
-vvp a.out +a=0001 +b=0001
-vvp a.out +a=0101 +b=0101
-vvp a.out +a=0111 +b=0011
-vvp a.out +a=1111 +b=1011
-vvp a.out +a=0101 +b=0101
-vvp a.out +a=0111 +b=0010
-vvp a.out +a=0100 +b=0110
-vvp a.out +a=0010 +b=0011
-vvp a.out +a=0110 +b=0111
-vvp a.out +a=0111 +b=1000
-vvp a.out +a=0110 +b=0100
-vvp a.out +a=1000 +b=0000
+for j in 0000 0001 0010 0011 0100 0101 0110 0111 1000 1001 1010 1011 1100 1101 1110 1111 
+do
+    for i in 0000 0001 0010 0011 0100 0101 0110 0111 1000 1001 1010 1011 1100 1101 1110 1111
+    do 
+        iverilog BCD.v full_adder_4b.v full_adder_1b.v adder_1b.v mux.v
+        vvp a.out +a=$i +b=$j
 
-rm a.out
+        rm a.out
+    done    
+done
