@@ -1,0 +1,161 @@
+\chapter*{3-Encoder y Demux}
+\section{Encoder}
+%\indent
+\subsection{Objetivo}
+Desarrollar un m\'odulo en Verilog el cual funcione como un encoder de 4 entradas.
+\subsection{Explicaci\'on y Desarrollo}
+Un encoder tiene la funcionalidad de tomar los datos de entrada y los codifica para que las salidas
+representen (en n\'umero en binario) la entrada cuyo valor es 1 como se puede ver en la siguiente tabla de verdad.
+\begin{center}
+	\begin{table}[h!]
+		\begin{center}
+			\caption{Tabla de Verdad del Encoder}
+			\begin{tabular}{|c|c|}
+				\hline
+				\textbf{INPUT} & \textbf{OUTPUT} \\
+				\hline
+				\textbf{a b c d} & \textbf{x y} \\
+				\hline
+				0 0 0 0 & z z\\
+				\hline
+				0 0 0 1 & 0 0 \\
+				\hline
+				0 0 1 0 & 0 1\\
+				\hline
+				0 0 1 1 & z z\\
+				\hline
+				0 1 0 0 & 1 0\\
+				\hline
+				0 1 0 1 & z z\\
+				\hline
+				0 1 1 0 & z z\\
+				\hline
+				0 1 1 1 & z z\\
+				\hline
+				1 0 0 0 & 1 1\\
+				\hline
+				1 0 0 1 & z z\\
+				\hline
+				1 0 1 0 & z z\\
+				\hline
+				1 0 1 1 & z z\\
+				\hline
+				1 1 0 0 & z z\\
+				\hline
+				1 1 0 1 & z z\\
+				\hline
+				1 1 1 0 & z z\\
+				\hline
+				1 1 1 1 & z z\\
+				\hline
+			\end{tabular} \\
+		\end{center}
+	\end{table}
+\end{center}
+Como las \'unicas salidas v\'alidas del encoder son aquellas cuando hay una \'unica entrada que contiene un 1, las dem\'as combinaciones de entradas se consideran como comodines para las salidas. Las cuales
+se puede elegir su valor de tal forma de facilitar los cálculos para obtener la funci\'on l\'ogica.
+Para poder obtener la fuci\'on l\'ogica del mismo, se hizo uso del mapa de Karnaugh el cual se muestra
+a continuación.
+\\
+\begin{Karnaugh}
+	%\caption{Tabla de Verdad del Encoder}
+    \contingut{z,1,1,z,0,z,z,z,0,z,z,z,z,z,z,z}
+    %\implicant{0}{2}{red}
+    %\implicant{5}{15}{purple}
+    %\implicantdaltbaix[3pt]{3}{10}{blue}
+    %\implicantcantons[2pt]{orange}
+    %\implicantcostats{4}{14}{green}
+\end{Karnaugh}
+\begin{Karnaugh}
+	%\caption{Tabla de Verdad del Encoder}
+    \contingut{z,0,1,z,0,z,z,z,1,z,z,z,z,z,z,z}
+    %\implicant{0}{2}{red}
+    %\implicant{5}{15}{purple}
+    %\implicantdaltbaix[3pt]{3}{10}{blue}
+    %\implicantcantons[2pt]{orange}
+    %\implicantcostats{4}{14}{green}
+\end{Karnaugh}
+\\
+El mapa de Karnaugh de la izquierda corresponde la salida X y el de la derecha la salida Y.
+Empezando con el mapa correspondiente a la salida X, se eligieron los valores de los comodines (z) de forma conveniente para poder agrupar lo m\'as posible. Este mapa se lo resolver\'a utilizando mint\'erminos.
+\\
+\begin{Karnaugh}
+    \contingut{1,1,1,1,0,0,1,1,0,0,1,1,0,0,1,1}
+    \implicant{3}{10}{red}
+    \implicant{0}{2}{blue}
+\end{Karnaugh}
+\\
+Ahora, para poder armar la funci\'on l\'ogica, se debe ver qu\'e variable (dentro de cada grupo) no cambia su valor. Y si dicha variable contiene el valor 0, entonces se lo niega ya que estamos trabajando con mint\'erminos. Se obtiene la siguiente funci\'on l\'ogica para la salida X.
+
+\begin{center}
+X = Not(c)Not(d) + a
+\end{center}
+Cuya tabla de verdad se muestra a continuación.
+\begin{center}
+	\begin{table}[h!]
+		\begin{center}
+			\caption{Tabla de Verdad del Encoder}
+			\begin{tabular}{|c|c|}
+				\hline
+				\textbf{INPUT} & \textbf{OUTPUT} \\
+				\hline
+				\textbf{a c d} & \textbf{x} \\
+				\hline
+				0 0 0 & 1\\
+				\hline
+				0 0 1 & 1 \\
+				\hline
+				0 1 0 & 0\\
+				\hline
+				0 1 1 & 1\\
+				\hline
+				1 0 0 & 0\\
+				\hline
+				1 0 1 & 1\\
+				\hline
+				1 1 0 & 0\\
+				\hline
+				1 1 1 & 1\\
+				\hline
+			\end{tabular} \\
+		\end{center}
+	\end{table}
+\end{center}
+
+Ahora centr\'andose en el mapa correspondiente a la salida Y, se eligieron nuevamente los valores de los comodines (z) de forma conveniente para poder agrupar lo m\'as posible. Este mapa se lo resolver\'a utilizando maxt\'erminos.
+\\
+\begin{Karnaugh}
+    \contingut{0,0,1,1,0,0,1,1,1,1,0,0,1,1,0,0}
+    \implicant{0}{5}{red}
+    \implicant{15}{10}{blue}
+\end{Karnaugh}
+\\
+Para poder armar la funci\'on l\'ogica, se debe ver nuevamente qu\'e variable (dentro de cada grupo) no cambia su valor. Y si dicha variable contiene el valor 1, entonces se lo niega ya que estamos trabajando con maxt\'erminos. Se obtiene la siguiente funci\'on l\'ogica para la salida Y.
+
+\begin{center}
+Y = a(Not(c)) + c(Not(a))
+\end{center}
+Cuya tabla de verdad se muestra a continuaci\'on.
+\begin{center}
+	\begin{table}[h!]
+		\begin{center}
+			\caption{Tabla de Verdad del Encoder}
+			\begin{tabular}{|c|c|}
+				\hline
+				\textbf{INPUT} & \textbf{OUTPUT} \\
+				\hline
+				\textbf{a c} & \textbf{y} \\
+				\hline
+				0 0 & 0\\
+				\hline
+				0 1 & 1 \\
+				\hline
+				1 0 & 1\\
+				\hline
+				1 1 & 0\\
+				\hline
+			\end{tabular} \\
+		\end{center}
+	\end{table}
+\end{center}
+Se puede notar, a trav\'es de la tabla de verdad, que Y = xor(a,c).
