@@ -1,0 +1,24 @@
+\BOOKMARK [1][-]{section.0.1}{Objetivo}{}% 1
+\BOOKMARK [1][-]{section.0.2}{Calculo de Rango y Observaciones}{}% 2
+\BOOKMARK [2][-]{subsection.0.2.1}{Ejemplo de c\341lculo de Rango}{section.0.2}% 3
+\BOOKMARK [2][-]{subsection.0.2.2}{Formula general para el c\341lculo del Rango}{section.0.2}% 4
+\BOOKMARK [2][-]{subsection.0.2.3}{Formula general para el c\341lculo de la Resoluci\363n}{section.0.2}% 5
+\BOOKMARK [1][-]{section.0.3}{Objetivo}{}% 6
+\BOOKMARK [2][-]{subsection.0.3.1}{Obtenci\363n del mapa de Karnaugh}{section.0.3}% 7
+\BOOKMARK [2][-]{subsection.0.3.2}{Aplicaci\363n del algebra de Boole}{section.0.3}% 8
+\BOOKMARK [1][-]{section.0.4}{Circuito Logico Utilizando compuertas AND,OR y NOT}{}% 9
+\BOOKMARK [1][-]{section.0.5}{Circuito Logico Utilizando compuertas NAND}{}% 10
+\BOOKMARK [1][-]{section.0.6}{Encoder}{}% 11
+\BOOKMARK [2][-]{subsection.0.6.1}{Objetivo}{section.0.6}% 12
+\BOOKMARK [2][-]{subsection.0.6.2}{Explicaci\363n y Desarrollo}{section.0.6}% 13
+\BOOKMARK [1][-]{section.0.7}{Demux}{}% 14
+\BOOKMARK [2][-]{subsection.0.7.1}{Objectivo}{section.0.7}% 15
+\BOOKMARK [2][-]{subsection.0.7.2}{Criterio e implementaci\363n}{section.0.7}% 16
+\BOOKMARK [1][-]{section.0.8}{Objetivo}{}% 17
+\BOOKMARK [1][-]{section.0.9}{Implementaci\355on}{}% 18
+\BOOKMARK [2][-]{subsection.0.9.1}{Adder de 1bit}{section.0.9}% 19
+\BOOKMARK [2][-]{subsection.0.9.2}{Full-Adder de 1bit}{section.0.9}% 20
+\BOOKMARK [2][-]{subsection.0.9.3}{Full-Adder de 4 bits}{section.0.9}% 21
+\BOOKMARK [2][-]{subsection.0.9.4}{Dise\361o del Sumador BCD}{section.0.9}% 22
+\BOOKMARK [1][-]{section.0.10}{Objetivo}{}% 23
+\BOOKMARK [2][-]{subsection.0.10.1}{Criterio e implementaci\363n}{section.0.10}% 24

@@ -1,0 +1,188 @@
+%\documentclass[11pt]{article}
+
+%\begin{document}
+
+\chapter*{1-Rango y Resolución}
+
+\section{Objetivo}
+\indent\indent  Desarrollar un programa que calcule el Rango y Resolución de un número de punto fijo.\\
+\indent El mismo recibira el signo, cantidad de bits de la parte entera y la cantidad de bits de la parte fraccionaria.
+\section{Calculo de Rango y Observaciones}
+\indent\indent Para poder hacer el calculo del Rango se deben tomar en cuenta los 3 parametros mencionados. Esto se debe a que se debe distinguir si el n\' umero es de tipo signado (SIGNO = 1) o no (SIGNO = 0). Esto parece ser estrictamente necesario. Sin embargo más adelante veremos que no lo es.
+\\ \indent Comenzamos por enunciar la definición de Rango:\\
+	\begin{center}
+	\emph{Es la diferencia entre la magnitud representable más positiva y la magnitud representable más negativa}
+	\end{center}
+
+\subsection{Ejemplo de c\'alculo de Rango}
+\indent\indent Introduciremos el metodo de cálculo mediante un ejemplo:\\
+\indent Supongamos que deseamos calcular el rango \textbf{R} de un número binario \textit{signado} con $3\ bits$ de parte entera y $2\ bits$ de parte fraccionaria entonces tenemos un n\'umero con la siguiente forma:
+
+
+
+\begin{center}
+\begin{tabular}{ |c|c|c|c|c| } 
+ \hline
+ 2 & 1 & 0 & -1 & -2 \\ 
+ x & x & x  & x & x\\ 
+ \hline
+\end{tabular}
+\end{center}
+
+Para calcular el maximo n\'umero representable $M$ :
+\begin{center}
+\begin{tabular}{ |ccccc| } 
+ \hline
+ 0 & 1 & 1 & .1 & 1 \\ 
+ \hline
+\end{tabular}
+\end{center}
+$$ 0^2 + 2^1 + 2^0 +2^{-1} + 2^{-2}  = 3.75$$
+\\\\
+Para calcular el minimo n\'umero representable $m$ :
+\begin{center}
+
+\begin{tabular}{ |ccccc| } 
+ \hline
+ 1 & 0 & 0 & .0 & 0 \\ 
+ \hline
+\end{tabular}
+\end{center}
+$$ m = -2^{2} = -4$$
+
+Por lo tanto el rango: 
+$$R = 3.75 - (-4 )$$ 
+$$R = 7.75 $$
+\\
+\indent Ahora podemos preguntarnos  C\'omo realizar el c\'alculo s\'i el n\'umero es no \textit{signado}.
+\\\\
+La maxima denominaci\'on vendra dada por:
+\begin{center}
+\begin{tabular}{ |ccccc| } 
+ \hline
+ 1 & 1 & 1 & .1 & 1 \\ 
+ \hline
+\end{tabular}
+\end{center}
+
+$$M' = 2^2 + 2^1 + 2^0 + 2^{-1} + 2^{-2}$$
+$$M' = 7.75$$
+\\
+La minima denominaci\'on vendra dada por:
+\begin{center}
+\begin{tabular}{ |ccccc| } 
+ \hline
+ 0 & 0 & 0 & .0 & 0 \\ 
+ \hline
+\end{tabular}
+\end{center}
+
+Lo cual claramente indicia que el minimo n\'umero representable es el $0$. Por lo tanto: $$m = 0$$
+
+
+
+
+Entonces: 	$$R' = M' - m'$$
+		 	$$R' = 7.75 $$
+		 	
+		 	
+Notamos que $R = R'$. Esto nos da indicios de que el rango de un n\'umero de punto fijo \textit{signado} \'o \textit{no signado} tiene n el mismo rango. A continuaci\'on demostraremos que esto es de hecho as\'i.
+
+\subsection{Formula general para el c\'alculo del Rango}
+\indent\indent Dado un n\'umero binario $B$ en punto fijo con $k$ bits en su parte entera y $j$ bits para su parte fraccionaria. 
+ Primero trataremos a $B$ como si se tratase de un n\'umero \textit{no signado}.Para ambos casos separaremos el problema en dos partes. Por un lado nos encargaremos de calcular la parte entera y luego la fraccionaria.
+\\
+
+Parte entera:
+\begin{equation}
+P_{k} = 1 + 2 +  \cdots  + 2^k
+\end{equation}
+\begin{equation}
+2P_{k} = 2 + 2^2  + \cdots + 2^k +2^{k+1} 
+\end{equation}
+
+Restandolas:
+\begin{equation}
+2P_{k} - P_{k} = 2^{k+1} -1 
+\end{equation}
+\\
+%Resultado para calcular la parte entera de un numero fraccionario no signado
+\begin{equation}
+P_{k} = 2^{k+1}-1
+\end{equation}
+
+Para realizar el calculo de la parte fraccionaria procedemos de forma analoga:
+
+\begin{equation}
+F_{j} = \frac{1}{2} + \frac{1}{4} +  \cdots  + \left(\frac{1}{2}\right)^j
+\end{equation}
+
+\begin{equation}
+\frac{1}{2} F_{j} = \frac{1}{4} + \frac{1}{8} +  \cdots  + \left(\frac{1}{2}\right)^j + \left(\frac{1}{2}\right)^{j+1}
+\end{equation}
+Restandolas:
+\begin{equation}
+F_{j} - \frac{1}{2}  F_{j} = \frac{1}{2} - \left(\frac{1}{2}\right)^{j+1}
+\end{equation}
+\\
+De lo cual obtenemos
+%Resultado para calcular la parte fraccionaria de un 
+\begin{equation}
+F_{j} = 1 - \left(\frac{1}{2}\right)^j
+\end{equation}
+
+Luego, como estamos tratando a $B$ como un n\'umero \textit{no signado}. 
+Usando 4 y 7 :
+$$R = P_{k}  + F_{j} =  \left(2^{k+1}-1 \right) + \left(1 - \left(\frac{1}{2} \right)^j\right) - 0$$
+\\
+Obtenemos la formula para el Rango de un n\'umero \textit{no signado}:
+$$R =  2^{k+1} - \left(\frac{1}{2} \right)^j$$
+
+Para el caso de un n\'umero \textit{signado} se tienen en cuenta $k + j - 1$ bits para calcular el n\'umero m\'as positivo representable.
+Es decir:
+
+$$P'_{k} = P_{k-1} = 2^{ (k+1)-1)} -1$$
+
+$$P'_{k} = 2^{k} -1$$
+
+En el caso de la parte fraccionaria es analogo al primero tratado
+\begin{align*}
+F'_{j} = F_{j}
+F'_{j} = 1 - \left(\frac{1}{2}\right)^j
+\end{align*}
+
+
+
+Para obtener la minima representaci\'on posible:
+\begin{equation}
+m''_{k} = -2^{k}
+\end{equation}
+
+Por lo tanto ya tenemos todo lo necesario para calcular $R'$ el rango de un n\'umero signado:
+
+\begin{align*}
+R' &= P'_{k} + F'_{j} - m''_{k} \\
+R' &= \left(2^{k} -1\right) + \left(1 - \left(\frac{1}{2}\right)^j\right) - \left(-2^{k}\right)
+\end{align*}
+ Reordenando y agrupando convenientemente
+ $$R' = 2^{k+1} - \left(\frac{1}{2}\right)^j$$
+ 
+Finalmente hemos demostrado que el Rango de un n\'umero en punto fijo no depende de si el n\'umero es \textit{signado} o \textit{no signado}
+Esto presenta una gran ventaja a nivel computacional ya que no son necesarias consideraciones extra y simplifica el c\'alculo a una sola expresi\'on
+
+\subsection{Formula general para el c\'alculo de la Resoluci\'on}
+Un n\'umero en punto fijo permite expresar n\'umeros reales con cierto grado de precisi\'on. Esta caracteristica esta limitada por la cantidad de bits que se dediquen a la parte fraccionaria.
+\\
+\indent La resoluci\'on vendra dada por:
+\begin{equation}
+Resoluci\acute{o}n = \left(\frac{1}{2}\right)^j
+\end{equation}
+
+Y es indistinto si el n\'umero es \textit{signado} o es \textit{no signado}
+
+ 
+ 
+ 
+%\end{document}
+
+

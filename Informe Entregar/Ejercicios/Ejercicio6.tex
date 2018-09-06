@@ -1,0 +1,12 @@
+\chapter*{6-ALU}
+\section{Objetivo}
+Implementar una ALU que cumpla con las operaciones basicas 
+\textit{SUMA, RESTA, AND, OR, NOT, XOR, CA2, SHFT2}.
+\subsection{Criterio e implementaci\'on}
+Siguiendo las recomendaciones de la comunidad de Verilog la cual recomienda escribir el codigo de la manera más explicita posible para el compilador.
+La ALU tiene como entradas un selector de operaciones de $3 bits$ y dos registros A y B de $4 bits$ cada uno.
+Se implementaron las operaciones haciendo uso de las funciones ya aportadas por el lenguaje. Para la selección de operacion se hizo uso de un bloque switch que junto con el bloque @always refresca el estado del programa cada vez que ocurre un cambio en el selector de acción.
+Se implemento una CLI en Python con el fin de aumentar la interacción con la misma sin sacrificar su funcionalidad. Esto ha sido realizado con fines experimentales. Notese que esta interfaz no se entromete con el codigo fuente original de Verilog, simplemente lo utiliza.
+
+
+
