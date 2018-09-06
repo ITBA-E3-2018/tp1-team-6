@@ -4,8 +4,10 @@ import argparse
 
 #Interfaz para ALU de 4 Bits.
 #Se asume que el usuario tiene nociones del tema y se limitara a dar entradas validas siguiendo las instrucciones dadas
-def process(data):   
+def process(data):  
+    print("/////////////////////O U T P U T/////////////////////////////////") 
     os.system("vvp alu +S="+str(data[0])+" +A="+str(data[1])+" +B="+str(data[2]))
+    print("//////////////////////////////////////////////////////////////////////////") 
     
 
 def showOps():
@@ -31,12 +33,19 @@ def main():
     showOps()
     backUp = []
     while(not quit):
-
         args = []
         args.append(input("Ingrese Selector (3bits) ").replace(" ",""))
+        if(args[0] == "quit"):
+            break
         args.append(input("Ingrese valor Registro A (4bits) ").replace(" ",""))
+        if(args[1] == "quit"):
+            break
         args.append(input("Ingrese valor Registro B (4bits) ").replace(" ",""))   
+        if(args[2] == "quit"):
+            break
+
         process(args)
+
         showOps()
 
 
