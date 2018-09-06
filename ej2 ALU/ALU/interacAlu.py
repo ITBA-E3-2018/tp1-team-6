@@ -4,9 +4,17 @@ import argparse
 
 #Interfaz para ALU de 4 Bits.
 #Se asume que el usuario tiene nociones del tema y se limitara a dar entradas validas siguiendo las instrucciones dadas
-def process(data):  
+def process(data,backUp):
+    temp = data
+    if data[0] == '':
+        temp[0] = backUp[0]
+    if data[1] == '':
+        temp[1] = backUp[1]
+    if data[2] == '':
+        temp[2] = backUp[2]  
+        
     print("/////////////////////O U T P U T/////////////////////////////////") 
-    os.system("vvp alu +S="+str(data[0])+" +A="+str(data[1])+" +B="+str(data[2]))
+    os.system("vvp alu +S="+str(temp[0])+" +A="+str(temp[1])+" +B="+str(temp[2]))
     print("//////////////////////////////////////////////////////////////////////////") 
     
 
@@ -25,8 +33,9 @@ def showWelcome():
     print("Esta ALU le permitira hacer operaciones unicamente con números de hasta 4 bits")
     print('''La siguiente tabla lo ayudara a seleccionar la operacion que desea realizar.
             ''')
-    print("Para ejecutar el testBench escriba -T")
-
+    T = input("¿Desea ejecutar el testBench? (yes/no)")
+    if(T == "yes"):
+        os.system("\.testBench.sh")
 def main():
     quit = False
     showWelcome()
@@ -44,8 +53,8 @@ def main():
         if(args[2] == "quit"):
             break
 
-        process(args)
-
+        process(args,backUp)
+        backUp = args
         showOps()
 
 
