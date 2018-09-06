@@ -33,9 +33,7 @@ def showWelcome():
     print("Esta ALU le permitira hacer operaciones unicamente con números de hasta 4 bits")
     print('''La siguiente tabla lo ayudara a seleccionar la operacion que desea realizar.
             ''')
-    T = input("¿Desea ejecutar el testBench? (yes/no)")
-    if(T == "yes"):
-        os.system("\.testBench.sh")
+
 def main():
     quit = False
     showWelcome()
