@@ -2,9 +2,10 @@ import os
 import sys
 import argparse
 
-
-def process(data, backUp):   
-    os.system("vvp alu +S="+str(temp[0])+" +A="+str(temp[1])+" +B="+str(temp[2]))
+#Interfaz para ALU de 4 Bits.
+#Se asume que el usuario tiene nociones del tema y se limitara a dar entradas validas siguiendo las instrucciones dadas
+def process(data):   
+    os.system("vvp alu +S="+str(data[0])+" +A="+str(data[1])+" +B="+str(data[2]))
     
 
 def showOps():
@@ -32,12 +33,10 @@ def main():
     while(not quit):
 
         args = []
-        args.append(input("Ingrese Selector ").replace(" ",""))
-        args.append(input("Ingrese valor Registro A ").replace(" ",""))
-        args.append(input("Ingrese valor Registro B ").replace(" ",""))   
-        backUp = args 
-        print(args)
-        process(args,backUp)
+        args.append(input("Ingrese Selector (3bits) ").replace(" ",""))
+        args.append(input("Ingrese valor Registro A (4bits) ").replace(" ",""))
+        args.append(input("Ingrese valor Registro B (4bits) ").replace(" ",""))   
+        process(args)
         showOps()
 
 
