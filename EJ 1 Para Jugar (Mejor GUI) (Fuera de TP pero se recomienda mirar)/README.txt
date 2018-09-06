@@ -1,0 +1,1 @@
+Este archivo contiene el ejercicio 1 fuera de la consigna dada. Sin embargo creemos que vale la pena mirarlo dado que es más amigable. Además como easterEgg incluimos el codigo del mismo implementado en Verilog!
